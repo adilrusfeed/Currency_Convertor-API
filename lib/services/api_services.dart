@@ -26,4 +26,26 @@ class ExchangeRates {
       throw Exception("Failed to load currencies");
     }
   }
+
+
+
+   String convertCurrency(
+    Map<String, double> exchangeRates,
+    String amount,
+    String currencybase,
+    String currencyfinal,
+  ) {
+    if (!exchangeRates.containsKey(currencybase) ||
+        !exchangeRates.containsKey(currencyfinal)) {
+      return "Invalid currency selection";
+    }
+
+    String output = (double.parse(amount) /
+            exchangeRates[currencybase]! *
+            exchangeRates[currencyfinal]!)
+        .toStringAsFixed(2)
+        .toString();
+
+    return output;
+  }
 }
